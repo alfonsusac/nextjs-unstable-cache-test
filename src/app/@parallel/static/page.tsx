@@ -1,4 +1,3 @@
-import { getRandomNumber } from "@/api/getRandomNumber"
 import RouteStaticity, { Time } from "@/components/components"
 import { cookies } from "next/headers"
 
@@ -9,10 +8,9 @@ export async function generateMetadata() {
 }
 
 export default async function Page() {
-  cookies()
 
   const local = await (await fetch('http://localhost:4000/api')).json()
-  
+
   const res = await fetch('https://next-backend-test.vercel.app/api')
   const external1 = await res.json()
 
@@ -36,9 +34,6 @@ export default async function Page() {
       </div>
       <div>
         External API (random-data-api.com): {external3.id}
-      </div>
-      <div>
-        Unstable Cache: {await getRandomNumber()}
       </div>
       <RouteStaticity />
     </>
